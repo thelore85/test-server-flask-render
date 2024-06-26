@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
+# from flask_sqlalchemy import SQLAlchemy
 
 # file api import
 from api.admin import setup_admin
