@@ -82,8 +82,33 @@ def pro_authentication():
 
 
 
-##########################################################
-##########################################################
+######################################################
+# Provinces
+
+# Get all provinces or post a new one
+@api.route("/provinces", methods=['POST', "GET"])
+def handle_provinces():
+    if request.method == "POST":
+        data = request.json
+        required_fields = ['name', 'country', 'timeZone']
+        if not all(field in data for field in required_fields):
+            return jsonify({"message": "Incomplete data. Please provide all field informations"}), 400
+        new_province = Provinces(
+            country=data["country"],
+            name=data['name'],
+            time_zone=data['timeZone'])
+        db.session.add(new_province)
+        db.session.commit()
+        return jsonify({"message": "Record added successfully", "province": new_province.serialize()}), 201
+    if request.method == 'GET':
+        provinces_list = Provinces.query.all()
+        provinces = [provinces.serialize() for provinces in provinces_list]
+        if not provinces_list:
+            return jsonify({"message": "No province found in the table"}), 400
+        else:
+            return jsonify({"message": "Province list created", "data": provinces}), 200
+        
+
 
 
 
