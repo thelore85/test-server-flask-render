@@ -21,6 +21,8 @@ from api.services.date_utility import get_current_date
 from api.services.patient_form_utility import create_new_allergies, create_new_medications, create_new_surgeries, create_new_diseases, update_patient_form
 from api.services.options_utility import create_default_options
 
+# pipenv run init && pipenv run migrate && pipenv run upgrade && pipenv run start
+
 # blueprint setting
 api = Blueprint('api', __name__)
 
