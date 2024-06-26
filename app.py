@@ -14,7 +14,7 @@ app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
 migrate = Migrate(app, db)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "https://app.plannermed.com"}})
 
 #setting
 app.register_blueprint(api, url_prefix='/api')

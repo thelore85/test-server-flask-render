@@ -106,7 +106,7 @@ def handle_provinces():
         if not provinces_list:
             return jsonify({"message": "No province found in the table"}), 400
         else:
-            return jsonify({"message": "Province list created", "data": provinces}), 200
+            return jsonify({"message": "Province list downloaded", "data": provinces}), 200
         
 
 
