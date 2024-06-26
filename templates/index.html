@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progetto Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body class="position-relative">
+      <main class="h-75">
+
+        <div class="container mt-5">
+
+            <h1 class="text-center">Welcome to Flask server</h1>
+            <p class="lead text-center">This is the backend manager</p>
+            
+            <div class="text-center mt-4">
+                <a href="/admin" class="btn btn-primary">Go to admin panel</a>
+            </div>
+            
+        </div>
+      </main>
+      <!-- <footer class="text-center mt-5 p-5 bg-secondary text-white">
+          <p>Crediti: <a href="https://github.com/tuo-username"></a></p>
+      </footer> -->
+</body>
+</html>
