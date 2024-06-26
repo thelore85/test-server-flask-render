@@ -28,7 +28,7 @@ api = Blueprint('api', __name__)
 def login():
     email = request.json.get("email") 
     password = request.json.get("password")
-    # user_login(email, password)
+    user_login(email, password)
     print(email, password)
     return 'login in calling'
 
