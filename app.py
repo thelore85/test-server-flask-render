@@ -1,6 +1,6 @@
 from flask import Flask, render_template
-import os
-# from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 # file api import
 from api.admin import setup_admin
@@ -8,21 +8,19 @@ from api.routes import api
 from api.model import db
 from api.config import Config
 
-# App - initialization
+# App - server
 app = Flask(__name__)
 app.config.from_object(Config)
-# app.config["SQLALCHEMY_DATABASE_URI"] = "DB_URL"
+db.init_app(app)
+migrate = Migrate(app, db)
 
-# # Initialize SQLAlchemy and defining a simple Book model
+# # // Initialize SQLAlchemy and defining a simple Book model
+# app.config["SQLALCHEMY_DATABASE_URI"] = "DB_URL"
 # db = SQLAlchemy(app)
 
 # class Book(db.Model):
 #     book_id = db.Column(db.Integer, primary_key=True)
 #     title = db.Column(db.String)
-
-# # Create database tables in the PostgreSQL database
-# with app.app_context():
-#     db.create_all()
 
 #setting
 app.register_blueprint(api, url_prefix='/api')
@@ -36,6 +34,4 @@ def index():
 if __name__ == "__main__":
     app.run(debug=True)
     with app.app_context():
-        print('creating db')
-        print('DB_URL', os.getenv("DATABASE_URL"))
         db.create_all()
