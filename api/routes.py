@@ -26,6 +26,10 @@ api = Blueprint('api', __name__)
 
 @api.route('/login', methods=['GET', 'POST'])
 def login():
+    email = request.json.get("email") 
+    password = request.json.get("password")
+    # user_login(email, password)
+    print(email, password)
     return 'login in calling'
 
 

@@ -15,15 +15,18 @@ from api.services.options_utility import create_default_options
 #LOGIN
 def user_login(email, password):
     pro = Pros.query.filter_by(email=email).first()
+    print(password)
 
-    if pro and bcrypt.checkpw(password.encode('utf-8'), pro.password):
-        identity = {
-            "id": pro.id,
-            "username": pro.username,
-            "email": pro.email,
-        }
-        token = create_access_token(identity=identity)
-        return jsonify(access_token=token, message="user logged in successfully"), 200
+    # if pro and bcrypt.checkpw(password.encode('utf-8'), pro.password):
+    #     print(pro)
+    #     print()
+    #     identity = {
+    #         "id": pro.id,
+    #         "username": pro.username,
+    #         "email": pro.email,
+    #     }
+    #     token = create_access_token(identity=identity)
+    #     return jsonify(access_token=token, message="user logged in successfully"), 200
     
     return jsonify(message="User not found: invalid Email or Password"), 404
 
