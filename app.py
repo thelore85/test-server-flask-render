@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import os
 # from flask_sqlalchemy import SQLAlchemy
 
 # file api import
@@ -35,4 +36,6 @@ def index():
 if __name__ == "__main__":
     app.run(debug=True)
     with app.app_context():
+        print('creating db')
+        print('DB_URL', os.getenv("DATABASE_URL"))
         db.create_all()
