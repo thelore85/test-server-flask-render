@@ -21,9 +21,7 @@ def user_login(email, password):
             "email": pro.email,
         }
         token = create_access_token(identity=pro_data)
-        print('debugging ............: ', token)
-        # return jsonify(access_token=token, message="user logged in successfully"), 200
-        return jsonify(message="user logged in successfully"), 200
+        return jsonify(access_token=token, message="user logged in successfully"), 200
     
     return jsonify(message="User not found: invalid Email or Password"), 404
 

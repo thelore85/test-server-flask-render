@@ -26,18 +26,6 @@ from api.services.options_utility import create_default_options
 # blueprint setting
 api = Blueprint('api', __name__)
 
-@api.route('/login', methods=['GET', 'POST'])
-def login():
-    email = request.json.get("email") 
-    password = request.json.get("password")
-    user_login(email, password)
-    return user_login(email, password)
-
-# @api.route("/login", methods=['POST'])
-# def login():
-#     email = request.json.get("email")
-#     password = request.json.get("password")
-#     return user_login(email, password)
 
 @api.route('/home')
 def home():
@@ -1186,11 +1174,12 @@ def send_token_reset_email():
     else:
         return jsonify({'message': message}),400
 
-# @api.route("/login", methods=['POST'])
-# def login():
-#     email = request.json.get("email")
-#     password = request.json.get("password")
-#     return user_login(email, password)
+@api.route("/login", methods=['POST'])
+def login():
+    email = request.json.get("email")
+    password = request.json.get("password")
+    return user_login(email, password)
+
 
 @api.route("/authentication", methods=["GET"])
 @jwt_required()
