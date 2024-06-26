@@ -14,6 +14,7 @@ flask-mail==0.10.0;
 flask-migrate==4.0.7;
 flask-socketio==5.3.6;
 flask-sqlalchemy==3.0.5;
+Gunicorn
 h11==0.14.0;
 itsdangerous==2.2.0;
 jinja2==3.1.4;
