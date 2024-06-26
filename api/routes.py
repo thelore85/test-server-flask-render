@@ -8,7 +8,6 @@ import random
 import os
 import re
 from sqlalchemy import not_
-from api.services.socketio import socketio
 from flask_socketio import emit
 
 # blueprint setting
