@@ -4,11 +4,12 @@ from flask import Flask, render_template
 # file api import
 from api.admin import setup_admin
 from api.routes import api
-# from api.model import db
+from api.model import db
+from api.config import Config
 
-# App - server
-
+# App - initialization
 app = Flask(__name__)
+app.config.from_object(Config)
 # app.config["SQLALCHEMY_DATABASE_URI"] = "DB_URL"
 
 # # Initialize SQLAlchemy and defining a simple Book model
@@ -33,3 +34,5 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    with app.app_context():
+        db.create_all()
