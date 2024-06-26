@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_cors import CORS
 
 # file api import
 from api.admin import setup_admin
@@ -13,6 +14,7 @@ app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
 migrate = Migrate(app, db)
+CORS(app)
 
 #setting
 app.register_blueprint(api, url_prefix='/api')
