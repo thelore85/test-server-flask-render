@@ -14,14 +14,6 @@ app.config.from_object(Config)
 db.init_app(app)
 migrate = Migrate(app, db)
 
-# # // Initialize SQLAlchemy and defining a simple Book model
-# app.config["SQLALCHEMY_DATABASE_URI"] = "DB_URL"
-# db = SQLAlchemy(app)
-
-# class Book(db.Model):
-#     book_id = db.Column(db.Integer, primary_key=True)
-#     title = db.Column(db.String)
-
 #setting
 app.register_blueprint(api, url_prefix='/api')
 setup_admin(app)
