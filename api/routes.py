@@ -31,3 +31,71 @@ def main():
 @api.route('/home')
 def home():
     return 'HOME / this is the back running'
+
+
+
+
+###################################################
+## AUTHENTICATION
+
+
+@api.route('/new-password', methods=['PUT'])
+def new_password_setting():
+    token = request.headers.get('Authorization')
+    print('token in the link', token)
+    return set_new_password(token)
+
+@api.route('/verify-reset-token', methods=['POST']) # Used in the 'password setting page': if not valid, no acces to the page
+def verify_reset_token_endpoint():
+    token = request.json.get('token')
+    return verify_reset_token(token)
+ 
+@api.route('/reset-email', methods=['POST'])
+def send_token_reset_email():
+    email = request.json.get('email')
+    token, message = generate_reset_token(email)
+
+    if token:
+        send_recovery_email(email, token)
+        return jsonify({'message': message}), 200
+    
+    else:
+        return jsonify({'message': message}),400
+
+@api.route("/login", methods=['POST'])
+def login():
+    email = request.json.get("email")
+    password = request.json.get("password")
+    return user_login(email, password)
+
+@api.route("/authentication", methods=["GET"])
+@jwt_required()
+def pro_authentication():  
+    identity = get_jwt_identity()
+    email = identity.get('email')
+    if email:
+        pro = Pros.query.filter_by(email=email).first()
+        if pro:
+            return jsonify(pro.serialize())
+    
+    return jsonify({"message": "Pro not found"}), 404
+
+
+
+##########################################################
+##########################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
