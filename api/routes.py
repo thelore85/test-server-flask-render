@@ -30,8 +30,7 @@ def login():
     password = request.json.get("password")
     user_login(email, password)
     print(email, password)
-    return 'login in calling'
-
+    return user_login(email, password)
 
 # @api.route("/login", methods=['POST'])
 # def login():
