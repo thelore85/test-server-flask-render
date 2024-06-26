@@ -10,27 +10,23 @@ import bcrypt
 from time import time
 from api.services.options_utility import create_default_options
 
-
+# pipenv run init && pipenv run migrate && pipenv run upgrade && pipenv run start
 
 #LOGIN
 def user_login(email, password):
     pro = Pros.query.filter_by(email=email).first()
-    print(password)
-
     if pro and bcrypt.checkpw(password.encode('utf-8'), pro.password):
-        print('debugging user_login', pro)
         identity = {
             "id": pro.id,
             "username": pro.username,
             "email": pro.email,
         }
-        print('debugging ............: ', identity)
-        # token = create_access_token(identity=identity)
+        token = create_access_token(identity=identity)
+        print('debugging ............: ', token)
         # return jsonify(access_token=token, message="user logged in successfully"), 200
         return jsonify(message="user logged in successfully"), 200
     
     return jsonify(message="User not found: invalid Email or Password"), 404
-
 
 
 # SIGNUP: New User creation
